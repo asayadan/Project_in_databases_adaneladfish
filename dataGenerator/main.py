@@ -99,7 +99,7 @@ def main():
 
     orders.drop("sum_per_payment", inplace=True, axis=1)
     extras.drop("chance", inplace=True, axis=1)
-    
+
     orders.to_csv("orders.csv", index=False)
     cancellation.to_csv("cancellations.csv", index=False)
     payments.to_csv("payments.csv", index=False)
