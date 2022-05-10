@@ -1,68 +1,69 @@
 CREATE TABLE Pricing
 (
-  name VARCHAR(30) NOT NULL,
+  name VARCHAR(20) NOT NULL,
   price INT NOT NULL,
-  pricinId INT NOT NULL,
-  PRIMARY KEY (pricinId)
+  pricing_id INT NOT NULL,
+  PRIMARY KEY (pricing_id)
 );
 
 CREATE TABLE Costumer
 (
-  costumerId INT NOT NULL,
-  PRIMARY KEY (costumerId)
+  costumer_id INT NOT NULL,
+  PRIMARY KEY (costumer_id)
 );
 
 CREATE TABLE Car
 (
-  carId INT NOT NULL,
-  PRIMARY KEY (carId)
+  car_id INT NOT NULL,
+  PRIMARY KEY (car_id)
 );
 
 CREATE TABLE Extras
 (
-  extrasId INT NOT NULL,
-  description VARCHAR(100) NOT NULL,
+  extra_id INT NOT NULL,
+  description VARCHAR(80) NOT NULL,
   price INT NOT NULL,
-  PRIMARY KEY (extrasId)
+  PRIMARY KEY (extra_id)
 );
 
 CREATE TABLE Orders
 (
-  ordersId INT NOT NULL,
-  date DATE NOT NULL,
-  costumerId INT NOT NULL,
-  carId INT NOT NULL,
-  pricinId INT NOT NULL,
-  PRIMARY KEY (ordersId),
-  FOREIGN KEY (costumerId) REFERENCES Costumer(costumerId),
-  FOREIGN KEY (carId) REFERENCES Car(carId),
-  FOREIGN KEY (pricinId) REFERENCES Pricing(pricinId)
+  order_id INT NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  costumer_id INT NOT NULL,
+  car_id INT NOT NULL,
+  pricing_id INT NOT NULL,
+  PRIMARY KEY (order_id),
+  FOREIGN KEY (costumer_id) REFERENCES Costumer(costumer_id),
+  FOREIGN KEY (car_id) REFERENCES Car(car_id),
+  FOREIGN KEY (pricing_id) REFERENCES Pricing(pricing_id)
 );
 
 CREATE TABLE Cancellations
 (
-  cancellationDate DATE NOT NULL,
-  cause VARCHAR(100) NOT NULL,
-  cancelationId INT NOT NULL,
+  cancellation_date DATE NOT NULL,
+  cause VARCHAR(80) NOT NULL,
+  cancelation_id INT NOT NULL,
   ordersId INT,
-  PRIMARY KEY (cancelationId),
-  FOREIGN KEY (ordersId) REFERENCES Orders(ordersId)
+  PRIMARY KEY (cancelation_id),
+  FOREIGN KEY (ordersId) REFERENCES Orders(order_id)
 );
 
 CREATE TABLE Payments
 (
-  paymentsId INT NOT NULL,
+  payment_id INT NOT NULL,
   sum INT NOT NULL,
   ordersId INT NOT NULL,
-  PRIMARY KEY (paymentsId),
-  FOREIGN KEY (ordersId) REFERENCES Orders(ordersId)
+  PRIMARY KEY (payment_id),
+  FOREIGN KEY (ordersId) REFERENCES Orders(order_id)
 );
 
 CREATE TABLE ExtrasForOrders
 (
-  extrasId INT NOT NULL,
-  ordersId INT NOT NULL,
-  PRIMARY KEY (extrasId, ordersId),
-  FOREIGN KEY (extrasId) REFERENCES Extras(extrasId),
-  FOREIGN KEY (ordersId) REFERENCES Orders(ordersId)
+  extra_id INT NOT NULL,
+  order_id INT NOT NULL,
+  PRIMARY KEY (extra_id, order_id),
+  FOREIGN KEY (extra_id) REFERENCES Extras(extra_id),
+  FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
