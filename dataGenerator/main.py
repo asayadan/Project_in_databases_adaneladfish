@@ -97,6 +97,9 @@ def main():
             num_payments += 1
             current_month += 1
 
+    people = pd.DataFrame(
+        {"people_id": []
+
     orders.drop("sum_per_payment", inplace=True, axis=1)
     extras.drop("chance", inplace=True, axis=1)
 

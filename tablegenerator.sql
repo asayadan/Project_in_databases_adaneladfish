@@ -45,18 +45,18 @@ CREATE TABLE Cancellations
   cancellation_date DATE NOT NULL,
   cause VARCHAR(80) NOT NULL,
   cancelation_id INT NOT NULL,
-  ordersId INT,
+  order_id INT,
   PRIMARY KEY (cancelation_id),
-  FOREIGN KEY (ordersId) REFERENCES Orders(order_id)
+  FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
 
 CREATE TABLE Payments
 (
   payment_id INT NOT NULL,
   sum INT NOT NULL,
-  ordersId INT NOT NULL,
+  order_id INT NOT NULL,
   PRIMARY KEY (payment_id),
-  FOREIGN KEY (ordersId) REFERENCES Orders(order_id)
+  FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
 
 CREATE TABLE ExtrasForOrders
