@@ -6,13 +6,13 @@ CREATE TABLE Pricing
   PRIMARY KEY (pricing_id)
 );
 
-CREATE TABLE Costumer
+CREATE TABLE Costumers
 (
   costumer_id INT NOT NULL,
   PRIMARY KEY (costumer_id)
 );
 
-CREATE TABLE Car
+CREATE TABLE Cars
 (
   car_id INT NOT NULL,
   PRIMARY KEY (car_id)
@@ -31,12 +31,13 @@ CREATE TABLE Orders
   order_id INT NOT NULL,
   start_date DATE NOT NULL,
   end_date DATE NOT NULL,
+  payments INT NOT NULL,
   costumer_id INT NOT NULL,
   car_id INT NOT NULL,
   pricing_id INT NOT NULL,
   PRIMARY KEY (order_id),
-  FOREIGN KEY (costumer_id) REFERENCES Costumer(costumer_id),
-  FOREIGN KEY (car_id) REFERENCES Car(car_id),
+  FOREIGN KEY (costumer_id) REFERENCES Costumers(costumer_id),
+  FOREIGN KEY (car_id) REFERENCES Cars(car_id),
   FOREIGN KEY (pricing_id) REFERENCES Pricing(pricing_id)
 );
 
