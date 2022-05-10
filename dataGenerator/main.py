@@ -97,8 +97,11 @@ def main():
             num_payments += 1
             current_month += 1
 
-    people = pd.DataFrame(
-        {"people_id": []
+    costumers = pd.DataFrame(
+        {"costumer_id": [i for i in range(number_of_instances("costumers") + 1)]})
+
+    cars = pd.DataFrame(
+        {"car_id": [i for i in range(number_of_instances("car") + 1)]})
 
     orders.drop("sum_per_payment", inplace=True, axis=1)
     extras.drop("chance", inplace=True, axis=1)
@@ -112,4 +115,13 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    #main()
+
+    costumers = pd.DataFrame(
+        {"costumer_id": [i for i in range(number_of_instances["costumers"] + 1)]})
+
+    cars = pd.DataFrame(
+        {"car_id": [i for i in range(number_of_instances["car"] + 1)]})
+
+    costumers.to_csv("costumers.csv", index=False)
+    cars.to_csv("cars.csv", index=False)
