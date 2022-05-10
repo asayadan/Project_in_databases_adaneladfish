@@ -55,6 +55,7 @@ CREATE TABLE Payments
 (
   payment_id INT NOT NULL,
   sum INT NOT NULL,
+  payement_month INT NOT NULL,
   order_id INT NOT NULL,
   PRIMARY KEY (payment_id),
   FOREIGN KEY (order_id) REFERENCES Orders(order_id)

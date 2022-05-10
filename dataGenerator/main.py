@@ -76,7 +76,7 @@ def main():
 
             df2 = pd.DataFrame(
                 {"cancellation_id": [num_cancellation], "cancellation_date": [cancellation_date],
-                 "order_id": [order['order_id']],  "cause": [""]})
+                 "order_id": [order['order_id']],  "cause": ["because"]})
             cancellation = pd.concat([cancellation, df2], ignore_index=True, axis=0)
             num_cancellation = num_cancellation + 1
 # **************************************************************************************************************
