@@ -31,12 +31,12 @@ def main():
          "costumer_id": [], "pricing_id": [], "payments": [], "sum_per_payment": []})
 
     extras_for_orders = pd.DataFrame(
-        {"order_id": [], "extras_id": []}
+        {"order_id": [], "extra_id": []}
     )
 
     num_orders = 0
     for i in range(number_of_instances["car"]):
-        last_date = datetime.date.today() - datetime.timedelta(days=120)
+        last_date = datetime.date.today() - datetime.timedelta(days=90)
         orders_car = random.randint(3, 10)
 
         for j in range(orders_car):
@@ -44,12 +44,12 @@ def main():
             start_date = last_date + datetime.timedelta(days=random.randint(2, 7))
             end_date = start_date + datetime.timedelta(days=new_days)
 
-            payments_num = random.randint(1, 5)
+            payments_num = random.randint(1, 10)
             pricing_num = random.randint(0, number_of_instances["pricing"] - 1)
             payment_sum = pricing["price"][pricing_num] * new_days
             for index, extra in extras.iterrows():
                 if random.random() < extra["chance"]:  # if this order was canceled
-                    df2 = pd.DataFrame({"order_id": [num_orders + j], "extras_id": [extra["extra_id"]]})
+                    df2 = pd.DataFrame({"order_id": [num_orders + j], "extra_id": [extra["extra_id"]]})
                     extras_for_orders = pd.concat([extras_for_orders, df2], ignore_index=True, axis=0)
                     payment_sum += extra["price"]
 
