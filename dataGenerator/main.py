@@ -6,13 +6,22 @@ import faker
 from faker import Faker
 import datetime
 
-number_of_instances = {"costumers": 1000, "car": 1000, "pricing": 3, "extras": 4,
+number_of_instances = {"costumers": 3000, "car": 3000, "pricing": 3, "extras": 4,
                        "orders": 50000, "cancellations": 5000}
 
 cancellation_percentage = 0.2
 
 f = Faker()
 
+
+cause_list = ["the ac is not good enough for Israel in the summer", "it costs too much for us to justify it",
+              "an unexpected event happened to my seventh child", "because"
+              "I am very disappointed  because a medieval knight didn't attack me"
+              "the bride decided to run", "I became addicted to fantasy books so I don't want to drive any more",
+              "my kids are annoying", "my grandparents bought me a new car", "I moved to the competitor",
+              "I killed my wife and I should go to jail", "I moved to Canada, It's too hot here in Israel",
+              "I had an unpleasant experience with the company", "I was too happy to drive",
+              "a medieval knight attacked me with an axe and I am now mortally wounded"]
 
 def main():
 
@@ -76,13 +85,13 @@ def main():
 
             df2 = pd.DataFrame(
                 {"cancellation_id": [num_cancellation], "cancellation_date": [cancellation_date],
-                 "order_id": [order['order_id']],  "cause": ["because"]})
+                 "order_id": [order['order_id']],  "cause": [cause_list[random.randint(0, len(cause_list)) - 1]]})
             cancellation = pd.concat([cancellation, df2], ignore_index=True, axis=0)
             num_cancellation = num_cancellation + 1
 # **************************************************************************************************************
 
     payments = pd.DataFrame(
-        {"payment_id": [], "payment_month": [], "order_id": [], "sum": []})
+        {"payment_id": [], "payment_month": [], "order_id": [], "sum": []})  # ToDo erase sum
     num_payments = 0
 
     for index, order in orders.iterrows():
