@@ -6,7 +6,7 @@ import faker
 from faker import Faker
 import datetime
 
-number_of_instances = {"costumers": 20000, "car": 20000, "pricing": 3, "extras": 4,
+number_of_instances = {"costumers": 1000, "car": 1000, "pricing": 3, "extras": 4,
                        "orders": 50000, "cancellations": 5000}
 
 cancellation_percentage = 0.2
