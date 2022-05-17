@@ -15,8 +15,8 @@ f = Faker()
 
 
 cause_list = ["the ac is not good enough for Israel in the summer", "it costs too much for us to justify it",
-              "an unexpected event happened to my seventh child", "because"
-              "I am very disappointed  because a medieval knight didn't attack me"
+              "an unexpected event happened to my seventh child", "because",
+              "I am very disappointed  because a medieval knight didn't attack me and I feel rejected",
               "the bride decided to run", "I became addicted to fantasy books so I don't want to drive any more",
               "my kids are annoying", "my grandparents bought me a new car", "I moved to the competitor",
               "I killed my wife and I should go to jail", "I moved to Canada, It's too hot here in Israel",
