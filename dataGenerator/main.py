@@ -6,8 +6,7 @@ import faker
 from faker import Faker
 import datetime
 
-number_of_instances = {"costumers": 20000, "car": 20000, "pricing": 3, "extras": 4,
-                       "orders": 50000, "cancellations": 5000}
+number_of_instances = {"costumers": 5000, "car": 5000, "pricing": 3, "extras": 4}
 
 cancellation_percentage = 0.1
 
@@ -58,6 +57,7 @@ def main():
             payments_num = random.randint(1, 10)
             pricing_num = random.randint(0, number_of_instances["pricing"] - 1)
             payment_sum = pricing["price"][pricing_num] * new_days
+
             for index, extra in extras.iterrows():
                 if random.random() < extra["chance"]:  # if this order was canceled
                     df2 = pd.DataFrame({"order_id": [num_orders + j], "extra_id": [extra["extra_id"]]})
@@ -69,6 +69,7 @@ def main():
                  "costumer_id": [random.randint(0, number_of_instances["costumers"])],
                  "pricing_id": [pricing_num],
                  "payments": [payments_num], "sum_per_payment": [payment_sum/payments_num]})
+
             orders = pd.concat([orders, df2], ignore_index=True, axis=0)
 
             last_date = end_date
@@ -83,7 +84,8 @@ def main():
     for index, order in orders.iterrows():
 
         if random.random() < cancellation_percentage:  # if this order was canceled
-            cancellation_date = f.date_between_dates(order["start_date"], order["end_date"])
+            cancellation_date = f.date_between_dates(order["start_date"] - datetime.timedelta(days=7),
+                                                     order["start_date"])
 
             df2 = pd.DataFrame(
                 {"cancellation_id": [num_cancellation], "cancellation_date": [cancellation_date],
