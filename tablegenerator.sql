@@ -21,7 +21,7 @@ CREATE TABLE Cars
 CREATE TABLE Extras
 (
   extra_id INT NOT NULL,
-  description VARCHAR(100) NOT NULL,
+  description VARCHAR(80) NOT NULL,
   price INT NOT NULL,
   PRIMARY KEY (extra_id)
 );
