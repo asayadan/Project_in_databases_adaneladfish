@@ -6,10 +6,10 @@ import faker
 from faker import Faker
 import datetime
 
-number_of_instances = {"costumers": 3000, "car": 3000, "pricing": 3, "extras": 4,
+number_of_instances = {"costumers": 20000, "car": 20000, "pricing": 3, "extras": 4,
                        "orders": 50000, "cancellations": 5000}
 
-cancellation_percentage = 0.2
+cancellation_percentage = 0.1
 
 f = Faker()
 
@@ -22,6 +22,7 @@ cause_list = ["the ac is not good enough for Israel in the summer", "it costs to
               "I killed my wife and I should go to jail", "I moved to Canada, It's too hot here in Israel",
               "I had an unpleasant experience with the company", "I was too happy to drive",
               "a medieval knight attacked me with an axe and I am now mortally wounded"]
+
 
 def main():
 
@@ -46,11 +47,12 @@ def main():
     num_orders = 0
     for i in range(number_of_instances["car"]):
         last_date = datetime.date.today() - datetime.timedelta(days=90)
-        orders_car = random.randint(3, 10)
 
-        for j in range(orders_car):
-            new_days = random.randint(1, 9)
-            start_date = last_date + datetime.timedelta(days=random.randint(2, 7))
+        j = 0
+        while last_date < datetime.date.today():
+            j += 1
+            new_days = random.randint(1, 10)
+            start_date = last_date + datetime.timedelta(days=random.randint(3, 30))
             end_date = start_date + datetime.timedelta(days=new_days)
 
             payments_num = random.randint(1, 10)
@@ -71,7 +73,7 @@ def main():
 
             last_date = end_date
 
-        num_orders = num_orders + orders_car
+        num_orders = num_orders + j
 
 # *********************************************************************************************************************************************
     cancellation = pd.DataFrame(
